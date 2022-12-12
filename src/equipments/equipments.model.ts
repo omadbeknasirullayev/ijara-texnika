@@ -1,8 +1,9 @@
-import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { User } from 'src/users/users.model';
 
 interface EquipmentCreateAttr {
   name: string;
+  image: string
   price: number;
 }
 
@@ -56,4 +57,7 @@ export class Equipment extends Model<Equipment, EquipmentCreateAttr> {
     defaultValue: false,
   })
   is_active: boolean;
+
+  @BelongsTo(() => User)
+  users: User
 }

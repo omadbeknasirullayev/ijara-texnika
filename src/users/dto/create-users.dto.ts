@@ -8,6 +8,9 @@ export class CreateUsersDto {
     @IsEmail({}, {message: "Email noto'g'ri kiritildi"})
     email: string
 
+    @IsString({message: "Parol satr bo'lishi kerak"})
+    password: string
+
     @IsString({message: "Phone_number satr bo'lishi kerak"})
     phone_number: string
     

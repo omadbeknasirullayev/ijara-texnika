@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript"
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript"
+import { Equipment } from "src/equipments/equipments.model"
 
 interface UserCreateAttr {
     name: string
@@ -33,6 +34,12 @@ export class User extends Model <User, UserCreateAttr> {
 
     @Column({
         type: DataType.STRING,
+        allowNull: false
+    })
+    password: string
+
+    @Column({
+        type: DataType.STRING,
         allowNull: false,
         unique: true
     })
@@ -54,4 +61,7 @@ export class User extends Model <User, UserCreateAttr> {
         defaultValue: false
     })
     is_active: boolean
+
+    @HasMany(() => Equipment)
+    equipments: Equipment[]
 }

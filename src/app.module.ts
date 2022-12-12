@@ -9,12 +9,20 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './users/users.model';
 import { Equipment } from './equipments/equipments.model';
 import { Order } from './orders/orders.model';
+import {ServeStaticModule} from '@nestjs/serve-static'
 import { Comment } from './comments/comments.model';
+import { AuthModule } from './auth/auth.module';
+import { FilesModule } from './files/files.module';
+import { resolve } from 'path';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
+    }),
+
+    ServeStaticModule.forRoot({
+      rootPath: resolve(__dirname, 'static')
     }),
 
     SequelizeModule.forRoot({
@@ -33,6 +41,8 @@ import { Comment } from './comments/comments.model';
     CommentsModule,
     OrdersModule,
     EquipmentsModule,
+    AuthModule,
+    FilesModule,
   ],
   controllers: [],
   providers: [],
